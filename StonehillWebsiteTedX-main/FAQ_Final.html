@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TedEx FAQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .faq-container {
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #333;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            width: 100%;
+            background-color: #1a1a1a;
+            border: none;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: #fff;
+        }
+
+        .faq-question:hover {
+            background-color: #2a2a2a;
+        }
+
+        .faq-question::after {
+            content: '\25BC';
+            float: right;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            color: #ff0000;
+        }
+
+        .faq-question.active::after {
+            transform: scale(0.7) rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #2a2a2a;
+        }
+
+        .faq-answer p {
+            padding: 20px;
+            margin: 0;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">When is the event?</button>
+                <div class="faq-answer">
+                    <p>The TEDxStonehill Intl School 2024 event will e held on the 26th of November.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How much are the tickets?</button>
+                <div class="faq-answer">
+                    <p>The tickets are being sold for 500 Rupees only.
+</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I be a partner?</button>
+                <div class="faq-answer">
+                    <p>We’re always welcoming new partners, if you’d like to sponsor/be a partner for our event please email us at 
+</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What are the languages spoken in the event?</button>
+                <div class="faq-answer">
+                    <p>All the talks will be presented in English primarily.
+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    const isOpen = question.classList.contains('active');
+
+                    // Close all other open items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.faq-question').classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                        }
+                    });
+
+                    // Toggle the clicked item
+                    question.classList.toggle('active');
+                    
+                    if (!isOpen) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
